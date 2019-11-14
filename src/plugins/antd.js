@@ -1,0 +1,97 @@
+import 'ant-design-vue/dist/antd.less' // or 'ant-design-vue/dist/antd.less'
+import Vue from 'vue'
+import {
+  Avatar,
+  Badge,
+  Button,
+  Card,
+  Cascader,
+  Checkbox,
+  Col,
+  DatePicker,
+  Divider,
+  Dropdown,
+  Form,
+  Icon,
+  Input,
+  InputNumber,
+  Layout,
+  List,
+  LocaleProvider,
+  message,
+  Menu,
+  Modal,
+  Pagination,
+  Popconfirm,
+  Popover,
+  Progress,
+  Radio,
+  Row,
+  Select,
+  Spin,
+  Statistic,
+  Steps,
+  Switch,
+  Table,
+  Tree,
+  TreeSelect,
+  Tabs,
+  Tag,
+  TimePicker,
+  Timeline,
+  Tooltip,
+  Upload,
+  Drawer,
+  Skeleton,
+  ConfigProvider,
+  Empty
+} from 'ant-design-vue'
+
+Vue.use(Avatar)
+Vue.use(Badge)
+Vue.use(Button)
+Vue.use(Card)
+Vue.use(Cascader)
+Vue.use(Checkbox)
+Vue.use(Col)
+Vue.use(DatePicker)
+Vue.use(Divider)
+Vue.use(Drawer)
+Vue.use(Dropdown)
+Vue.use(Form)
+Vue.use(Icon)
+Vue.use(Input)
+Vue.use(InputNumber)
+Vue.use(Layout)
+Vue.use(List)
+Vue.use(LocaleProvider)
+Vue.use(Menu)
+Vue.use(Modal)
+Vue.use(Pagination)
+Vue.use(Popconfirm)
+Vue.use(Popover)
+Vue.use(Progress)
+Vue.use(Radio)
+Vue.use(Row)
+Vue.use(Select)
+Vue.use(Spin)
+Vue.use(Statistic)
+Vue.use(Steps)
+Vue.use(Switch)
+Vue.use(Table)
+Vue.use(Tree)
+Vue.use(TreeSelect)
+Vue.use(Tabs)
+Vue.use(Tag)
+Vue.use(TimePicker)
+Vue.use(Timeline)
+Vue.use(Tooltip)
+Vue.use(Upload)
+Vue.use(Skeleton)
+Vue.use(ConfigProvider)
+Vue.use(Empty)
+
+Vue.prototype.$message = message
+message.config({
+  maxCount: 1
+})
