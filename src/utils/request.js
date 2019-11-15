@@ -4,10 +4,31 @@ import store from '@/store'
 import { VueAxios } from './axios'
 import { Modal, notification } from 'ant-design-vue'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
+// 设置环境区分
+let baseURL = ''
+const baseURLArr = [
+  {
+    type: 'development',
+    url: 'http://10.192.168.1'
+  },
+  {
+    type: 'production',
+    url: 'http://10.192.1.1'
+  },
+  {
+    type: 'test',
+    url: 'http://10.192.168.2'
+  }
+]
+baseURLArr.forEach(item => {
+  if (process.env.NODE_ENV === item.type) {
+    baseURL = item.url
+  }
+})
 
 // 创建 axios 实例
 const service = axios.create({
-  baseURL: '/ishop',
+  baseURL,
   timeout: 60000 // 请求超时时间
 })
 
