@@ -13,9 +13,9 @@ const permission = {
   },
   actions: {
     // 动态添加主界面路由，需要缓存
-    UpdateAppRouter ({ commit }, routes) {
+    UpdateAppRouter({ commit }, routes) {
       return new Promise(resolve => {
-        let routelist = routes.constRoutes
+        const routelist = routes.constRoutes
         commit('SET_ROUTERS', routelist)
         resolve()
       })

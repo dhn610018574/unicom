@@ -1,6 +1,6 @@
 import { axios } from '@/utils/request'
 // get请求
-export function getAction (url, params) {
+export function getAction(url, params) {
   return axios({
     url: url,
     method: 'get',
@@ -8,7 +8,7 @@ export function getAction (url, params) {
   })
 }
 // post请求
-export function postAction (url, data) {
+export function postAction(url, data) {
   return axios({
     url: url,
     method: 'post',
@@ -16,7 +16,7 @@ export function postAction (url, data) {
   })
 }
 // put请求
-export function putAction (url, data) {
+export function putAction(url, data) {
   return axios({
     url: url,
     method: 'put',
@@ -24,7 +24,7 @@ export function putAction (url, data) {
   })
 }
 // delete请求
-export function deleteAction (url, params) {
+export function deleteAction(url, params) {
   return axios({
     url: url,
     method: 'delete',
@@ -32,7 +32,7 @@ export function deleteAction (url, params) {
   })
 }
 // 文件下载
-export function downFile (url, params) {
+export function downFile(url, params) {
   return axios({
     url: url,
     params,

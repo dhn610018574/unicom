@@ -1,22 +1,22 @@
 import { isURL } from '@/utils/validate'
 
-export function timeFix () {
+export function timeFix() {
   const time = new Date()
   const hour = time.getHours()
   return hour < 9 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour < 20 ? '下午好' : '晚上好'
 }
 
-export function welcome () {
+export function welcome() {
   const arr = ['休息一会儿吧', '准备吃什么呢?', '要不要打一把 DOTA', '我猜你可能累了']
-  let index = Math.floor(Math.random() * arr.length)
+  const index = Math.floor(Math.random() * arr.length)
   return arr[index]
 }
 
 /**
  * 触发 window.resize
  */
-export function triggerWindowResizeEvent () {
-  let event = document.createEvent('HTMLEvents')
+export function triggerWindowResizeEvent() {
+  const event = document.createEvent('HTMLEvents')
   event.initEvent('resize', true, true)
   event.eventType = 'message'
   window.dispatchEvent(event)
@@ -27,7 +27,7 @@ export function triggerWindowResizeEvent () {
  * @param obj
  * @returns {*}
  */
-export function filterObj (obj) {
+export function filterObj(obj) {
   if (!(typeof obj === 'object')) {
     return
   }
@@ -46,12 +46,12 @@ export function filterObj (obj) {
  * @param fmt
  * @returns {*}
  */
-export function formatDate (value, fmt) {
+export function formatDate(value, fmt) {
   var regPos = /^\d+(\.\d+)?$/
   if (regPos.test(value)) {
     // 如果是数字
-    let getDate = new Date(value)
-    let o = {
+    const getDate = new Date(value)
+    const o = {
       'M+': getDate.getMonth() + 1,
       'd+': getDate.getDate(),
       'h+': getDate.getHours(),
@@ -63,7 +63,7 @@ export function formatDate (value, fmt) {
     if (/(y+)/.test(fmt)) {
       fmt = fmt.replace(RegExp.$1, (getDate.getFullYear() + '').substr(4 - RegExp.$1.length))
     }
-    for (let k in o) {
+    for (const k in o) {
       if (new RegExp('(' + k + ')').test(fmt)) {
         fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length))
       }
@@ -77,9 +77,9 @@ export function formatDate (value, fmt) {
 }
 
 // 生成首页路由
-export function generateIndexRouter (data) {
+export function generateIndexRouter(data) {
   const home = getHomePath(data.filter(item => !item.hidden && item.path !== '/dashboard/analysis'))
-  let indexRouter = [
+  const indexRouter = [
     {
       path: '/',
       name: 'home',
@@ -103,7 +103,7 @@ export function generateIndexRouter (data) {
 }
 
 // 获取首页跳转path
-function getHomePath (data) {
+function getHomePath(data) {
   if (data.length) {
     if (data[0].children && data[0].children.length) {
       return getHomePath(data[0].children.filter(item => !item.hidden))
@@ -116,7 +116,7 @@ function getHomePath (data) {
 }
 
 // 生成嵌套路由（子路由）
-function generateChildRouters (data) {
+function generateChildRouters(data) {
   const routers = []
   for (var item of data) {
     let component = ''
@@ -127,12 +127,12 @@ function generateChildRouters (data) {
     }
 
     // eslint-disable-next-line no-eval
-    let URL = (item.meta.url || '').replace(/{{([^}}]+)?}}/g, (s1, s2) => eval(s2)) // URL支持{{ window.xxx }}占位符变量
+    const URL = (item.meta.url || '').replace(/{{([^}}]+)?}}/g, (s1, s2) => eval(s2)) // URL支持{{ window.xxx }}占位符变量
     if (isURL(URL)) {
       item.meta.url = URL
     }
 
-    let menu = {
+    const menu = {
       id: item.id,
       path: item.path,
       name: item.name,
@@ -154,6 +154,7 @@ function generateChildRouters (data) {
     }
 
     if (item.route && item.route === '0') {
+      console.log('123')
     } else {
       routers.push(menu)
     }
@@ -166,7 +167,7 @@ function generateChildRouters (data) {
  * @param obj 被克隆的对象
  * @return 克隆后的对象
  */
-export function cloneObject (obj) {
+export function cloneObject(obj) {
   return JSON.parse(JSON.stringify(obj))
 }
 
@@ -180,18 +181,18 @@ export function cloneObject (obj) {
  * @param2 最大值
  * @return int 生成后的数字
  */
-export function randomNumber () {
+export function randomNumber() {
   // 生成 最小值 到 最大值 区间的随机数
   const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
   if (arguments.length === 1) {
-    let [length] = arguments
+    const [length] = arguments
     // 生成指定长度的随机数字，首位一定不是 0
-    let nums = [...Array(length).keys()].map(i => (i > 0 ? random(0, 9) : random(1, 9)))
+    const nums = [...Array(length).keys()].map(i => (i > 0 ? random(0, 9) : random(1, 9)))
     return parseInt(nums.join(''))
   } else if (arguments.length >= 2) {
-    let [min, max] = arguments
+    const [min, max] = arguments
     return random(min, max)
   } else {
     return Number.NaN
@@ -204,12 +205,12 @@ export function randomNumber () {
  * @param chats 可选字符串区间（只会生成传入的字符串中的字符）
  * @return string 生成的字符串
  */
-export function randomString (length, chats) {
+export function randomString(length, chats) {
   if (!length) length = 1
   if (!chats) chats = '0123456789qwertyuioplkjhgfdsazxcvbnm'
   let str = ''
   for (let i = 0; i < length; i++) {
-    let num = randomNumber(0, chats.length - 1)
+    const num = randomNumber(0, chats.length - 1)
     str += chats[num]
   }
   return str
@@ -219,8 +220,8 @@ export function randomString (length, chats) {
  * 随机生成uuid
  * @return string 生成的uuid
  */
-export function randomUUID () {
-  let chats = '0123456789abcdef'
+export function randomUUID() {
+  const chats = '0123456789abcdef'
   return randomString(32, chats)
 }
 
@@ -229,14 +230,14 @@ export function randomUUID () {
  * @param string
  * @returns {*}
  */
-export function underLine2CamelCase (string) {
-  return string.replace(/_([a-z])/g, function (all, letter) {
+export function underLine2CamelCase(string) {
+  return string.replace(/_([a-z])/g, function(all, letter) {
     return letter.toUpperCase()
   })
 }
 
 // 修正数字为两位数
-export function returnFloat (value) {
+export function returnFloat(value) {
   value = Math.round(parseFloat(value) * 100) / 100
   if (!value) {
     return '0.00'

@@ -34,7 +34,7 @@ const service = axios.create({
 
 const err = error => {
   if (error.response) {
-    let data = error.response.data
+    const data = error.response.data
     const token = Vue.ls.get(ACCESS_TOKEN)
 
     switch (error.response.status) {
@@ -114,7 +114,7 @@ service.interceptors.response.use(response => {
 
 const installer = {
   vm: {},
-  install (Vue, router = {}) {
+  install(Vue, router = {}) {
     Vue.use(VueAxios, router, service)
   }
 }

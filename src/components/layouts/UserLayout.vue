@@ -33,13 +33,13 @@ import RouteView from '@/components/layouts/RouteView'
 export default {
   name: 'UserLayout',
   components: { RouteView },
-  data () {
+  data() {
     return {}
   },
-  mounted () {
+  mounted() {
     document.body.classList.add('userLayout')
   },
-  beforeDestroy () {
+  beforeDestroy() {
     document.body.classList.remove('userLayout')
   }
 }

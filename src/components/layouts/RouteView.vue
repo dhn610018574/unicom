@@ -9,7 +9,7 @@
 export default {
   name: 'RouteView',
   computed: {
-    keepAlive () {
+    keepAlive() {
       return this.$route.meta.keepAlive
     }
   }

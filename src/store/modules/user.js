@@ -16,10 +16,10 @@ const user = {
 
   actions: {
     // 获取用户信息
-    GetPermissionList ({ commit }) {
+    GetPermissionList({ commit }) {
       return new Promise((resolve, reject) => {
-        let v_token = Vue.ls.get(ACCESS_TOKEN)
-        let params = { token: v_token }
+        const v_token = Vue.ls.get(ACCESS_TOKEN)
+        const params = { token: v_token }
         queryPermissionsByUser(params)
           .then(response => {
             const menuData = response.result.menu

@@ -1,6 +1,6 @@
 <template>
   <a-locale-provider :locale="locale">
-    <a-config-provider :getPopupContainer="triggerNode => triggerNode.parentNode">
+    <a-config-provider :get-popup-container="triggerNode => triggerNode.parentNode">
       <div id="app">
         <router-view />
       </div>
@@ -11,7 +11,7 @@
 import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN'
 
 export default {
-  data () {
+  data() {
     return {
       locale: zhCN
     }

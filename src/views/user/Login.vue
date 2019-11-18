@@ -1,15 +1,15 @@
 <template>
   <div class="main">
-    <a-form :form="form" class="user-layout-login" ref="formLogin" id="formLogin">
+    <a-form id="formLogin" ref="formLogin" :form="form" class="user-layout-login">
       <a-tabs
-        :activeKey="customActiveKey"
-        :tabBarStyle="{ textAlign: 'center', borderBottom: 'unset' }"
+        :active-key="customActiveKey"
+        :tab-bar-style="{ textAlign: 'center', borderBottom: 'unset' }"
       >
         <a-tab-pane key="tab1" tab="账号密码登陆">
           <a-form-item>
             <a-input
-              size="large"
               v-decorator="['username',validatorRules.username]"
+              size="large"
               type="text"
               placeholder="请输入用户名"
             >
@@ -36,18 +36,18 @@
                     v-decorator="['inputCode',validatorRules.inputCode]"
                     size="large"
                     type="text"
-                    @change="inputCodeChange"
                     placeholder="请输入验证码"
+                    @change="inputCodeChange"
                   >
                     <a-icon
-                      slot="prefix"
                       v-if=" inputCodeContent==verifiedCode "
+                      slot="prefix"
                       type="smile"
                       :style="{ color: 'rgba(0,0,0,.25)' }"
                     />
                     <a-icon
-                      slot="prefix"
                       v-else
+                      slot="prefix"
                       type="frown"
                       :style="{ color: 'rgba(0,0,0,.25)' }"
                     />
@@ -55,7 +55,7 @@
                 </a-form-item>
               </a-col>
               <a-col :span="10">
-                <j-graphic-code @success="generateCode" style="float: right"></j-graphic-code>
+                <j-graphic-code style="float: right" @success="generateCode"></j-graphic-code>
               </a-col>
             </a-row>
           </div>
@@ -65,11 +65,11 @@
         <a-button
           size="large"
           type="primary"
-          htmlType="submit"
+          html-type="submit"
           class="login-button"
           :loading="loginBtn"
-          @click.stop.prevent="handleSubmit"
           :disabled="loginBtn"
+          @click.stop.prevent="handleSubmit"
         >确定</a-button>
       </a-form-item>
     </a-form>
@@ -84,7 +84,7 @@ export default {
   components: {
     JGraphicCode
   },
-  data () {
+  data() {
     return {
       customActiveKey: 'tab1',
       loginBtn: false,
@@ -116,12 +116,12 @@ export default {
       inputCodeNull: true
     }
   },
-  created () {
+  created() {
     Vue.ls.remove(ACCESS_TOKEN)
   },
-  mounted () {},
+  mounted() {},
   methods: {
-    inputCodeChange (e) {
+    inputCodeChange(e) {
       this.inputCodeContent = e.target.value
       if (!e.target.value || e.target.value === 0) {
         this.inputCodeNull = true
@@ -130,10 +130,10 @@ export default {
         this.inputCodeNull = false
       }
     },
-    generateCode (value) {
+    generateCode(value) {
       this.verifiedCode = value.toLowerCase()
     },
-    validateMobile (rule, value, callback) {
+    validateMobile(rule, value, callback) {
       if (
         !value ||
         new RegExp(
@@ -142,19 +142,19 @@ export default {
       ) {
         callback()
       } else {
-        let str = '您的手机号码格式不正确!'
+        const str = '您的手机号码格式不正确!'
         callback(str)
       }
     },
-    validateInputCode (rule, value, callback) {
+    validateInputCode(rule, value, callback) {
       if (!value || this.verifiedCode === this.inputCodeContent) {
         callback()
       } else {
-        let str = '您输入的验证码不正确!'
+        const str = '您输入的验证码不正确!'
         callback(str)
       }
     },
-    handleSubmit () {}
+    handleSubmit() {}
   }
 }
 </script>

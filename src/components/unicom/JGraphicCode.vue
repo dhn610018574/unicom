@@ -61,22 +61,30 @@ export default {
       default: 38
     }
   },
+  data() {
+    return {
+      code: ''
+    }
+  },
+  mounted() {
+    this.drawPic()
+  },
   methods: {
     // 生成一个随机数
-    randomNum (min, max) {
+    randomNum(min, max) {
       return Math.floor(Math.random() * (max - min) + min)
     },
     // 生成一个随机的颜色
-    randomColor (min, max) {
-      let r = this.randomNum(min, max)
-      let g = this.randomNum(min, max)
-      let b = this.randomNum(min, max)
+    randomColor(min, max) {
+      const r = this.randomNum(min, max)
+      const g = this.randomNum(min, max)
+      const b = this.randomNum(min, max)
       return 'rgb(' + r + ',' + g + ',' + b + ')'
     },
-    drawPic () {
+    drawPic() {
       this.randomCode()
-      let canvas = document.getElementById('gc-canvas')
-      let ctx = canvas.getContext('2d')
+      const canvas = document.getElementById('gc-canvas')
+      const ctx = canvas.getContext('2d')
       ctx.textBaseline = 'bottom'
       // 绘制背景
       ctx.fillStyle = this.randomColor(
@@ -92,12 +100,12 @@ export default {
       this.drawDot(ctx)
       this.$emit('success', this.code)
     },
-    drawText (ctx, txt, i) {
+    drawText(ctx, txt, i) {
       ctx.fillStyle = this.randomColor(this.colorMin, this.colorMax)
-      let fontSize = this.randomNum(this.fontSizeMin, this.fontSizeMax)
+      const fontSize = this.randomNum(this.fontSizeMin, this.fontSizeMax)
       ctx.font = fontSize + 'px SimHei'
-      let padding = 10
-      let offset = (this.contentWidth - 40) / (this.code.length - 1)
+      const padding = 10
+      const offset = (this.contentWidth - 40) / (this.code.length - 1)
       let x = padding
       if (i > 0) {
         x = padding + i * offset
@@ -115,7 +123,7 @@ export default {
       ctx.rotate((-deg * Math.PI) / 180)
       ctx.translate(-x, -y)
     },
-    drawLine (ctx) {
+    drawLine(ctx) {
       // 绘制干扰线
       for (let i = 0; i < 1; i++) {
         ctx.strokeStyle = this.randomColor(
@@ -134,7 +142,7 @@ export default {
         ctx.stroke()
       }
     },
-    drawDot (ctx) {
+    drawDot(ctx) {
       // 绘制干扰点
       for (let i = 0; i < 100; i++) {
         ctx.fillStyle = this.randomColor(0, 255)
@@ -149,26 +157,18 @@ export default {
         ctx.fill()
       }
     },
-    reloadPic () {
+    reloadPic() {
       this.drawPic()
     },
-    randomCode () {
+    randomCode() {
       let random = ''
       // 去掉了I l i o O
-      let str = 'QWERTYUPLKJHGFDSAZXCVBNMqwertyupkjhgfdsazxcvbnm1234567890'
+      const str = 'QWERTYUPLKJHGFDSAZXCVBNMqwertyupkjhgfdsazxcvbnm1234567890'
       for (let i = 0; i < this.length; i++) {
-        let index = Math.floor(Math.random() * 57)
+        const index = Math.floor(Math.random() * 57)
         random += str[index]
       }
       this.code = random
-    }
-  },
-  mounted () {
-    this.drawPic()
-  },
-  data () {
-    return {
-      code: ''
     }
   }
 }
